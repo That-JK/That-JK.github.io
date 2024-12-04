@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                overflow-x: hidden;
+                font-size: 20px;
+                background-color: #2e3279;
+            }
+            hr {
+                width: 110%;
+                height: 0.75vh;
+                margin-top: -13px;
+                margin-bottom: 0;
+                transform: translate(-5%, 0px);
+                border-width: 0;
+                color: #e49b79;
+                background-color: #e49b79;
+            }
+            p {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 6vh;
+                color: #fff;
+            }
+            .banner {
+                width: 110%;
+                margin-left: -5%;
+                transform: translateY(-8px);
+            }
+            .hide_earbuds {
+                display: none;
+            }
+            .earbuds {
+                max-width: 80%;
+                position: relative;
+                margin: auto;
+            }
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                width: auto;
+                padding: 1vw;
+                margin-top: -20%;
+                color: #c1b5cf;
+                font-weight: bold;
+                font-size: 6vw;
+                transition: 0.6s ease;
+                border-radius: 1vw;
+                user-select: none;
+            }
+            .next {
+                right: 0;
+            }
+            .prev:hover, .next:hover {
+                color: #e49b79;
+                background-color: #4b538b;
+            }
+            .dot {
+                cursor: pointer;
+                height: 3vh;
+                width: 3vh;
+                margin: 0 0.5vw;
+                transform: translateY(-1vh);
+                background-color: #4b538b;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
+            .active, .dot:hover {
+                background-color: #e49b79;
+            }
+            .earbud_img {
+                width: 70%;
+                padding-left: 15%;
+            }
+            .fade {
+                animation-name: fade;
+                animation-duration: 0.75s;
+            }
+            @keyframes fade {
+                from {opacity: 0} 
+                to {opacity: 1}
+            }
+            .ad_row {
+                width: 100%;
+                transform: translate(-2px, 5%);
+            }
+            .ad_textbox_right {
+                width: 60%;
+                right: 0px;
+                position: absolute;
+                transform: translate(-1vw, 1vh);
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                font-size: 10vh;
+                color: #e49b79;
+            }
+            .ad_textbox_left {
+                width: 60%;
+                position: absolute;
+                transform: translate(1vw, 1vh);
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                font-size: 10vh;
+                color: #e49b79;
+            }
+            .video_box {
+                max-width: 100vw;
+                position: relative;
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <img class="banner" src="Website/Banner.png">
+        <hr>
+        <div class="earbuds">
+            <div class="hide_earbuds fade"><img class="earbud_img" src="Website/A.png"></div>
+            <div class="hide_earbuds fade"><img class="earbud_img" src="Website/B.png"></div>
+            <div class="hide_earbuds fade"><img class="earbud_img" src="Website/C.png"></div>
+            <div class="hide_earbuds fade"><img class="earbud_img" src="Website/D.png"></div>
+            <div class="hide_earbuds fade"><img class="earbud_img" src="Website/E.png"></div>
+            <a class="prev" onclick="switch_colour(-1)">❮</a>
+            <a class="next" onclick="switch_colour(1)">❯</a>
+        </div>
+        <div style="text-align:center">
+            <span class="dot" onclick="current_colour(1)"></span> 
+            <span class="dot" onclick="current_colour(2)"></span> 
+            <span class="dot" onclick="current_colour(3)"></span>
+            <span class="dot" onclick="current_colour(4)"></span> 
+            <span class="dot" onclick="current_colour(5)"></span> 
+        </div>
+        <br>
+        <hr>
+        <div style="height: 10vh;"></div>
+        <div class="ad_row">
+            <div class="ad_textbox_right">
+                Long Battery Life
+                <p>The Sony LinkBuds S has long-lasting battery life, ensuring that your sound never stop mid-way.</p>
+            </div>
+            <img style="width: 35%;" src="Website/Battery.png">
+        </div>
+        <div style="height: 15vh;"></div>
+        <div class="ad_row">
+            <div class="ad_textbox_left">
+                Comfortable
+                <p>The Sony LinkBuds S is incredibly comfortable. Ensuring that your ear will not hurt or get tired from wearing them all day long.</p>
+            </div>
+            <img style="width: 35%; margin-left: 100%; transform: translateX(-100%);" src="Website/Comfortable.png">
+        </div>
+        <div style="height: 15vh;"></div>
+        <hr>
+        <div style="height: 5vh;"></div>
+        <div class="video_box">
+            <video style="height: 60vh; transform: translateX(-6vw);" controls>
+                <source src="Website/Video1.mp4" type="video/mp4">
+            </video>
+            <video style="height: 60vh; transform: translateX(-2vw);" controls>
+                <source src="Website/Video2.mp4" type="video/mp4">
+            </video>
+            <video style="height: 60vh; transform: translateX(2vw);" controls>
+                <source src="Website/Video3.mp4" type="video/mp4">
+            </video>
+            <video style="height: 60vh; transform: translateX(6vw);" controls>
+                <source src="Website/SVid.mp4" type="video/mp4">
+            </video>
+        </div>
+        <br>
+        <div style="height: 5vh;"></div>
+        <hr>
+
+        <script>
+        let earbud_index = 1;
+        show_earbud(earbud_index);
+
+        function switch_colour(n) {
+            show_earbud(earbud_index += n);
+        }
+
+        function current_colour(n) {
+            show_earbud(earbud_index = n);
+        }
+
+        function show_earbud(n) {
+            let i;
+            let earbud = document.getElementsByClassName("hide_earbuds");
+            let dots = document.getElementsByClassName("dot");
+            if (n > earbud.length) {earbud_index = 1}    
+            if (n < 1) {earbud_index = earbud.length}
+            for (i = 0; i < earbud.length; i++) {
+                earbud[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            earbud[earbud_index - 1].style.display = "block";  
+            dots[earbud_index - 1].className += " active";
+        }
+        </script>
+    </body>
+</html>
